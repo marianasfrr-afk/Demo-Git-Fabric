@@ -1,0 +1,29 @@
+table data_final
+	isHidden
+	lineageTag: f0c1a4a5-6e43-42a0-8f1b-c8938b7ecb27
+
+	column data_final
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: a9bdca67-3ba9-4344-b7bc-da67a5efa1f5
+		summarizeBy: none
+		sourceColumn: data_final
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition data_final = m
+		mode: import
+		queryGroup: Parâmetros
+		source = DateTime.Date(DateTime.LocalNow())
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Date
+
