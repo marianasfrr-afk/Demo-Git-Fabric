@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "criar_moedas"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8c925d1b-0644-8e08-4eae-1186b6e5b76b"
+  }
+}
