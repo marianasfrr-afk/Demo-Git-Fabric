@@ -24,15 +24,17 @@ queryGroup Fatos
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["base_transacoes","data_inicial","data_final","moedas","calendario","getCotacoes","DirectQuery para AS – demo_git_direct_lake"]
+annotation PBI_QueryOrder = ["base_transacoes","data_inicial","data_final","moedas","calendario","transacoes","getCotacoes","cotacoes"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
+annotation __PBI_ServiceStoredInTmdl = reserved
+
 ref table data_final
+ref table moedas
 ref table calendario
-ref table moeda
-ref table cotacoes
 ref table transacoes
+ref table cotacoes
 
 ref cultureInfo pt-BR
 
