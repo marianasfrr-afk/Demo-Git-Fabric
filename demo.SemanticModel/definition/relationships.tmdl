@@ -1,16 +1,18 @@
-relationship AutoDetected_4561f935-5015-43d6-8a91-3f0adc358148
-	fromColumn: transacoes.Moeda
-	toColumn: moedas.Moeda
-
-relationship AutoDetected_3b992df4-ab5b-4285-a338-f803ab9cf637
+relationship 5a313abd-9918-4233-ae31-84a4bf158aa2
 	fromColumn: cotacoes.Moeda
-	toColumn: moedas.Moeda
+	toColumn: moeda.Moeda
 
-relationship 543dbf69-1957-d5ca-9882-c36e53b63352
-	fromColumn: cotacoes.Data
+relationship 5791606f-7825-46f9-b812-125b91106838
+	fromColumn: transacoes.Moeda
+	toColumn: moeda.Moeda
+
+relationship f7f17ee9-e579-dba9-fbe7-7442828424d6
+	securityFilteringBehavior: none
+	fromColumn: transacoes.Data
 	toColumn: calendario.Data
 
-relationship 0d648b17-9faa-acf3-5dbc-7589c6ef5eea
-	fromColumn: transacoes.Data
+relationship 424d4a8a-c167-7943-e8d0-6be238dc2b89
+	securityFilteringBehavior: none
+	fromColumn: cotacoes.DataCotacao
 	toColumn: calendario.Data
 

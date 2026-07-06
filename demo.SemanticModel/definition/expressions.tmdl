@@ -103,3 +103,51 @@ expression getCotacoes = ```
 
 	annotation PBI_ResultType = Function
 
+expression 'DirectQuery para AS – demo_git_direct_lake' =
+		let
+		    Source = AnalysisServices.Database("powerbi://api.powerbi.com/v1.0/myorg/demo_git_fabric_dev", "demo_git_direct_lake"),
+		    Cubes = Table.Combine(Source[Data]),
+		    Cube = Cubes{[Id="Model", Kind="Cube"]}[Data]
+		in
+		    Cube
+	lineageTag: ced5bbfd-8f19-4fe4-9ace-8ed68cab2de5
+
+	annotation PBI_IncludeFutureArtifacts = True
+
+expression moedas = ```
+		let
+		    source = Table.FromRows(
+		        {
+		            {"BRL", "Real brasileiro", "R$ #,##0.00;R$ #,##0.00;-"},
+		            {"AUD", "Dólar australiano", "$ #,##0.00;$ #,##0.00;-"},
+		            {"CAD", "Dólar canadense", "$ #,##0.00;$ #,##0.00;-"},
+		            {"CHF", "Franco suíço", "Fr #,##0.00;Fr #,##0.00;-"},
+		            {"DKK", "Coroa dinamarquesa", "kr #,##0.00;kr #,##0.00;-"},
+		            {"EUR", "Euro", "€ #,##0.00;€ #,##0.00;-"},
+		            {"GBP", "Libra Esterlina", "£ #,##0.00;£ #,##0.00;-"},
+		            {"JPY", "Iene", "¥ #,##0;¥ #,##0;-"},
+		            {"NOK", "Coroa norueguesa", "kr #,##0.00;kr #,##0.00;-"},
+		            {"SEK", "Coroa sueca", "kr #,##0.00;kr #,##0.00;-"},
+		            {"USD", "Dólar dos Estados Unidos", "$ #,##0.00;$ #,##0.00;-"}
+		        },
+		        {"Moeda", "Nome", "Formato"}
+		    ),
+		    
+		    changedType = Table.TransformColumnTypes(
+		        source,{
+		            {"Moeda", type text}, 
+		            {"Nome", type text}, 
+		            {"Formato", type text}
+		        }
+		    )
+		
+		in
+		    changedType
+		```
+	lineageTag: d63badf8-0a95-4aa8-bd09-b23fd81113a5
+	queryGroup: Dimensões
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

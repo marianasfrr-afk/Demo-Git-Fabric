@@ -1,11 +1,12 @@
 table cotacoes
-	lineageTag: 657d7173-a153-4129-8214-63ff69624133
+	lineageTag: 16f41f07-be4d-4a1d-8268-954b81411e90
+	sourceLineageTag: b1b76725-563a-4ec5-a546-77368411c1d8
 
-	measure 'Cotação do dia' = AVERAGE(cotacoes[Cotacao])
+	measure 'Cotação do dia 2' = EXTERNALMEASURE("Cotação do dia", DOUBLE, "DirectQuery para AS – demo_git_direct_lake")
 		displayFolder: Medidas
-		lineageTag: e0dca70c-4e21-47fd-b6ac-496a1b68e394
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		lineageTag: ce05f604-4ceb-4dc7-85b0-6d2b8e7421fa
+		sourceLineageTag: 0191516f-3026-4f4c-8dd3-f28102156ee4
+		dataCategory: Uncategorized
 
 	measure 'Cotação corrigida' = ```
 			
@@ -29,10 +30,16 @@ table cotacoes
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Cotação do dia' = AVERAGE(cotacoes[Cotacao])
+		displayFolder: Medidas
+		lineageTag: e0dca70c-4e21-47fd-b6ac-496a1b68e394
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	measure 'Total R$' = ```
 			
 			SUMX(
-			    moedas,
+			    moeda,
 			    SUMX(
 			        calendario,
 			        COALESCE([Cotação corrigida], 1) * [Valor Total] 
@@ -47,60 +54,63 @@ table cotacoes
 	column Moeda
 		dataType: string
 		displayFolder: Colunas
-		lineageTag: 9edbd905-f52c-46dc-845d-59dee0902fbb
+		lineageTag: 6b8fc6a8-656c-46cf-9504-52434a7b5c35
+		sourceLineageTag: 910632fc-e070-435d-93c7-23f2a5780993
+		dataCategory: Uncategorized
 		summarizeBy: none
 		sourceColumn: Moeda
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
-	column DataHora
+	column DataHoraCotacao
 		dataType: dateTime
-		formatString: General Date
+		formatString: General Number
 		displayFolder: Colunas
-		lineageTag: 46bc85ea-ce98-462e-93db-d52afb9bc407
+		lineageTag: b5a90ccc-6b96-427a-acd0-86a51995d9e7
+		sourceLineageTag: a1b08521-0acf-4dde-8dd7-86f4ddec359c
+		dataCategory: Uncategorized
 		summarizeBy: none
-		sourceColumn: DataHora
+		sourceColumn: DataHoraCotacao
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
+
+	column DataCotacao
+		dataType: dateTime
+		formatString: General Number
+		displayFolder: Colunas
+		lineageTag: f3541721-169f-4546-a64e-f6eec5935216
+		sourceLineageTag: 68177a87-b6dd-4834-b940-bcfa8ba0fa1e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DataCotacao
+
+		annotation SummarizationSetBy = User
 
 	column Cotacao
 		dataType: double
 		displayFolder: Colunas
-		lineageTag: 98bd981d-a3c4-4332-9a90-83294920b5e9
-		summarizeBy: average
+		lineageTag: 4b8b40e8-2d92-4856-92a3-e2d3710c2a99
+		sourceLineageTag: 3cd2439c-5002-43b4-b81f-3856c8dc73e7
+		dataCategory: Uncategorized
+		summarizeBy: sum
 		sourceColumn: Cotacao
 
 		annotation SummarizationSetBy = User
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column TipoBoletim
 		dataType: string
 		displayFolder: Colunas
-		lineageTag: 53bb68d5-ba77-41bc-8adf-664831585b0f
+		lineageTag: 5c9ec238-a901-4c27-ac9c-b804545191f6
+		sourceLineageTag: 0a15520c-0b06-4c8c-8905-07803d705661
+		dataCategory: Uncategorized
 		summarizeBy: none
 		sourceColumn: TipoBoletim
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
-	column Data
-		dataType: dateTime
-		formatString: Short Date
-		displayFolder: Colunas
-		lineageTag: 3179d23d-d893-4674-b91d-092fd19fc378
-		summarizeBy: none
-		sourceColumn: Data
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
-
-	partition cotacoes = m
-		mode: import
-		queryGroup: Fatos
-		source = getCotacoes(data_inicial, data_final)
-
-	annotation PBI_NavigationStepName = Navegação
-
-	annotation PBI_ResultType = Table
+	partition cotacoes = entity
+		mode: directQuery
+		source
+			entityName: cotacoes
+			expressionSource: 'DirectQuery para AS – demo_git_direct_lake'
 

@@ -1,5 +1,12 @@
 table transacoes
-	lineageTag: 0e350a5e-a17d-4fa1-88bd-19843233d78d
+	lineageTag: e1479316-404a-47f7-ade7-0a983d9fe664
+	sourceLineageTag: b3f1cca2-0c19-4196-b7de-39cdc245ed3b
+
+	measure Transacoes = EXTERNALMEASURE("Transacoes", DOUBLE, "DirectQuery para AS – demo_git_direct_lake")
+		displayFolder: Medidas
+		lineageTag: 08616a06-6730-43fe-802f-01a26259739e
+		sourceLineageTag: 17dc23a0-bb16-4fba-9252-653eccbccfcb
+		dataCategory: Uncategorized
 
 	measure 'Valor Total' = SUM(transacoes[Total])
 		displayFolder: Medidas
@@ -10,68 +17,51 @@ table transacoes
 	column ID
 		dataType: double
 		displayFolder: Colunas
-		lineageTag: c3b172e2-ebd7-4a83-811d-9679b3fefdb4
+		lineageTag: 8c58bd3d-2360-416e-a4fc-f94ebc6d6341
+		sourceLineageTag: c4900332-e87f-47aa-9511-b625057fd56a
+		dataCategory: Uncategorized
 		summarizeBy: count
 		sourceColumn: ID
 
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation SummarizationSetBy = User
 
 	column Data
 		dataType: dateTime
-		formatString: Long Date
+		formatString: General Number
 		displayFolder: Colunas
-		lineageTag: 21372ac3-1166-4523-b3a1-c3ee36797e6b
+		lineageTag: 1066d4f4-3acd-4571-92dd-451c4f846893
+		sourceLineageTag: 46676c8e-53b0-4856-8634-7cd870467215
+		dataCategory: Uncategorized
 		summarizeBy: none
 		sourceColumn: Data
 
-		annotation SummarizationSetBy = Automatic
-
-		annotation UnderlyingDateTimeDataType = Date
+		annotation SummarizationSetBy = User
 
 	column Total
 		dataType: double
 		displayFolder: Colunas
-		lineageTag: e7c96d76-0e57-4b60-8113-152191814e3b
+		lineageTag: abe6e230-f532-4dbe-a6f9-457bccf4d518
+		sourceLineageTag: 5847787a-d9f8-47d8-b455-ca744093673c
+		dataCategory: Uncategorized
 		summarizeBy: sum
 		sourceColumn: Total
 
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation SummarizationSetBy = User
 
 	column Moeda
 		dataType: string
 		displayFolder: Colunas
-		lineageTag: 919fc0c0-38de-4d6e-9ab5-162e62995ab0
+		lineageTag: ba49457d-0a32-4f78-a790-5d5ddfd885da
+		sourceLineageTag: 2d41064b-03f9-46ce-9965-c792020fe39a
+		dataCategory: Uncategorized
 		summarizeBy: none
 		sourceColumn: Moeda
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
-	partition transacoes = m
-		mode: import
-		queryGroup: Fatos
-		source = ```
-				let
-				    source = Excel.Workbook(
-				        File.Contents(base_transacoes), 
-				        true, 
-				        null
-				    ),
-				    
-				    transacoes_Table = source{[Item="transacoes",Kind="Table"]}[Data],
-				    
-				    datesRestricted = Table.SelectRows(
-				        transacoes_Table, 
-				        each [Data] >= data_inicial and [Data] <= data_final
-				    )
-				in
-				    datesRestricted
-				```
-
-	annotation PBI_NavigationStepName = Navegação
-
-	annotation PBI_ResultType = Table
+	partition transacoes = entity
+		mode: directQuery
+		source
+			entityName: transacoes
+			expressionSource: 'DirectQuery para AS – demo_git_direct_lake'
 
