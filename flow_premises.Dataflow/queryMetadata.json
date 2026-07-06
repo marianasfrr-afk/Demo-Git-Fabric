@@ -10,11 +10,31 @@
   "queriesMetadata": {
     "transacoes": {
       "queryId": "936c9a60-2a18-4dd3-a1d8-e2d15337f458",
-      "queryName": "transacoes"
+      "queryName": "transacoes",
+      "loadEnabled": false
     },
     "calendario": {
       "queryId": "8b434053-702b-41e3-95d2-30f38f5e547d",
-      "queryName": "calendario"
+      "queryName": "calendario",
+      "loadEnabled": false
+    },
+    "NavigationQuery": {
+      "queryId": "e675adc1-b628-49e9-b50d-cc21ae3a8616",
+      "queryName": "NavigationQuery",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "calendario_DataDestination": {
+      "queryId": "b37877e7-215d-4da7-bd9d-09e2753c8a91",
+      "queryName": "calendario_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "transacoes_DataDestination": {
+      "queryId": "610177e3-ee26-46c8-bff0-9a319f214cf2",
+      "queryName": "transacoes_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
     }
   },
   "connections": [
@@ -22,6 +42,11 @@
       "path": "C:\\Users\\maria\\OneDrive\\transacoes.xlsx",
       "kind": "File",
       "connectionId": "{\"ClusterId\":\"cf467d9e-6855-4c18-83d7-1ab0042044fb\",\"DatasourceId\":\"dd080ea2-06fb-4519-b854-a247c0fbc004\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"cf467d9e-6855-4c18-83d7-1ab0042044fb\",\"DatasourceId\":\"a2f3f093-df76-4401-8f67-0a2338766a0a\"}"
     }
   ]
 }
