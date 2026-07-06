@@ -1,0 +1,67 @@
+table cotacoes
+	lineageTag: 669933ac-e408-4783-a550-84ba8a395c7f
+	sourceLineageTag: [dbo].[cotacoes]
+
+	column Moeda
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: f6dd593c-0572-49ee-81f0-5a8adf1f496c
+		sourceLineageTag: Moeda
+		summarizeBy: none
+		sourceColumn: Moeda
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataHoraCotacao
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: bc6e4ec2-8849-489a-a469-8f7994a2df04
+		sourceLineageTag: DataHoraCotacao
+		summarizeBy: none
+		sourceColumn: DataHoraCotacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataCotacao
+		dataType: dateTime
+		formatString: General Date
+		sourceProviderType: date
+		lineageTag: dcf43203-977f-4357-b035-91c04a68f3af
+		sourceLineageTag: DataCotacao
+		summarizeBy: none
+		sourceColumn: DataCotacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cotacao
+		dataType: double
+		sourceProviderType: real
+		lineageTag: b7f37fd6-edb7-46da-8cac-2b80849c67ee
+		sourceLineageTag: Cotacao
+		summarizeBy: sum
+		sourceColumn: Cotacao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TipoBoletim
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 1a5992be-ba1a-4d60-89d6-0e5700ae218e
+		sourceLineageTag: TipoBoletim
+		summarizeBy: none
+		sourceColumn: TipoBoletim
+
+		annotation SummarizationSetBy = Automatic
+
+	partition cotacoes = entity
+		mode: directLake
+		source
+			entityName: cotacoes
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
