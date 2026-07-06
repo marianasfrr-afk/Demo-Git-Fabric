@@ -1,0 +1,23 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "Dataflow 1",
+  "queryGroups": [],
+  "documentLocale": "pt-BR",
+  "gatewayObjectId": "cf467d9e-6855-4c18-83d7-1ab0042044fb",
+  "queriesMetadata": {
+    "transacoes": {
+      "queryId": "936c9a60-2a18-4dd3-a1d8-e2d15337f458",
+      "queryName": "transacoes"
+    }
+  },
+  "connections": [
+    {
+      "path": "C:\\Users\\maria\\OneDrive\\transacoes.xlsx",
+      "kind": "File",
+      "connectionId": "{\"ClusterId\":\"cf467d9e-6855-4c18-83d7-1ab0042044fb\",\"DatasourceId\":\"dd080ea2-06fb-4519-b854-a247c0fbc004\"}"
+    }
+  ]
+}
