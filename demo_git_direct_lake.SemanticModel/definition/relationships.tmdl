@@ -1,0 +1,8 @@
+relationship 34ada4fa-9474-2569-97ed-bbe99d5b0c27
+	fromColumn: transacoes.Moeda
+	toColumn: moedas.Moeda
+
+relationship dd5edaeb-197a-bec0-f73b-55580bc61aa8
+	fromColumn: cotacoes.Moeda
+	toColumn: moedas.Moeda
+

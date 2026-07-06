@@ -1,11 +1,10 @@
 table moedas
-	lineageTag: ac93b4f7-ed41-4f07-a05a-37911fbe7157
+	lineageTag: 79158fc6-95da-481c-abb9-6fca37524c03
 	sourceLineageTag: [dbo].[moedas]
 
 	column Moeda
 		dataType: string
-		sourceProviderType: varchar(8000)
-		lineageTag: d49b5fc7-c8b6-44f3-8e2a-622379e8f6a9
+		lineageTag: 29c97837-307b-4b73-8e5b-a486620f7fdb
 		sourceLineageTag: Moeda
 		summarizeBy: none
 		sourceColumn: Moeda
@@ -14,8 +13,7 @@ table moedas
 
 	column Nome
 		dataType: string
-		sourceProviderType: varchar(8000)
-		lineageTag: cf7145d8-900d-457d-b389-1d16909d2ae5
+		lineageTag: dfe703b1-4b1b-4678-8027-f56a3a3d6817
 		sourceLineageTag: Nome
 		summarizeBy: none
 		sourceColumn: Nome
@@ -24,8 +22,7 @@ table moedas
 
 	column Formato
 		dataType: string
-		sourceProviderType: varchar(8000)
-		lineageTag: c4974b0a-a830-4849-a000-7b29e3de2a5d
+		lineageTag: 041b2128-2aac-430a-ab8a-d3ba0775d670
 		sourceLineageTag: Formato
 		summarizeBy: none
 		sourceColumn: Formato
@@ -36,8 +33,5 @@ table moedas
 		mode: directLake
 		source
 			entityName: moedas
-			schemaName: dbo
-			expressionSource: DatabaseQuery
-
-	annotation PBI_ResultType = Table
+			expressionSource: 'DirectLake - lake'
 

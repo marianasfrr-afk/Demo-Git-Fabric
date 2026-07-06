@@ -1,14 +1,28 @@
 table transacoes
-	lineageTag: 8f5d814e-2548-4289-a949-c12363c7455b
+	lineageTag: b3f1cca2-0c19-4196-b7de-39cdc245ed3b
 	sourceLineageTag: [dbo].[transacoes]
+
+	measure Transacoes = ```
+			SUM(transacoes[Total]) 
+			```
+		displayFolder: Medidas
+		lineageTag: 17dc23a0-bb16-4fba-9252-653eccbccfcb
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column ID
 		dataType: double
-		sourceProviderType: float
-		lineageTag: cd025150-97a2-447c-817f-ce62cf7804c7
+		displayFolder: Colunas
+		lineageTag: c4900332-e87f-47aa-9511-b625057fd56a
 		sourceLineageTag: ID
 		summarizeBy: count
 		sourceColumn: ID
+
+		changedProperty = DisplayFolder
 
 		annotation SummarizationSetBy = Automatic
 
@@ -17,21 +31,25 @@ table transacoes
 	column Data
 		dataType: dateTime
 		formatString: General Date
-		sourceProviderType: date
-		lineageTag: 3d49a882-e55c-45b5-aba4-dfd4cf13e8be
+		displayFolder: Colunas
+		lineageTag: 46676c8e-53b0-4856-8634-7cd870467215
 		sourceLineageTag: Data
 		summarizeBy: none
 		sourceColumn: Data
+
+		changedProperty = DisplayFolder
 
 		annotation SummarizationSetBy = Automatic
 
 	column Total
 		dataType: double
-		sourceProviderType: float
-		lineageTag: eead4efe-dc8a-4052-a914-df7a55208f13
+		displayFolder: Colunas
+		lineageTag: 5847787a-d9f8-47d8-b455-ca744093673c
 		sourceLineageTag: Total
 		summarizeBy: sum
 		sourceColumn: Total
+
+		changedProperty = DisplayFolder
 
 		annotation SummarizationSetBy = Automatic
 
@@ -39,11 +57,13 @@ table transacoes
 
 	column Moeda
 		dataType: string
-		sourceProviderType: varchar(8000)
-		lineageTag: ebf88ccd-f37a-4ad6-b8ec-136ddc0e4dc1
+		displayFolder: Colunas
+		lineageTag: 2d41064b-03f9-46ce-9965-c792020fe39a
 		sourceLineageTag: Moeda
 		summarizeBy: none
 		sourceColumn: Moeda
+
+		changedProperty = DisplayFolder
 
 		annotation SummarizationSetBy = Automatic
 
@@ -51,8 +71,5 @@ table transacoes
 		mode: directLake
 		source
 			entityName: transacoes
-			schemaName: dbo
-			expressionSource: DatabaseQuery
-
-	annotation PBI_ResultType = Table
+			expressionSource: 'DirectLake - lake'
 
