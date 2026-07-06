@@ -4,7 +4,7 @@
   "artifacts": [
     {
       "report": {
-        "path": "demo.Report"
+        "path": "demo_direct.Report"
       }
     }
   ],
