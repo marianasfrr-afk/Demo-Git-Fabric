@@ -11,6 +11,10 @@
     "transacoes": {
       "queryId": "936c9a60-2a18-4dd3-a1d8-e2d15337f458",
       "queryName": "transacoes"
+    },
+    "calendario": {
+      "queryId": "8b434053-702b-41e3-95d2-30f38f5e547d",
+      "queryName": "calendario"
     }
   },
   "connections": [
