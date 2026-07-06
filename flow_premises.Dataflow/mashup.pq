@@ -7,3 +7,12 @@ shared transacoes = let
   #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"ID", Int64.Type}, {"Data", type date}, {"Total", type number}, {"Moeda", type text}})
 in
   #"Tipo de coluna alterado";
+shared calendario = let
+    DataInicial = #date(2020,1,1),
+    DataFinal = #date(2035,12,31),
+    QuantidadeDias = Duration.Days(DataFinal - DataInicial) + 1,
+    ListaDatas = List.Dates(DataInicial, QuantidadeDias, #duration(1,0,0,0)),
+    Calendario = Table.FromList(ListaDatas, Splitter.SplitByNothing(), {"Data"}),
+    TipoData = Table.TransformColumnTypes(Calendario,{{"Data", type date}})
+in
+    TipoData;

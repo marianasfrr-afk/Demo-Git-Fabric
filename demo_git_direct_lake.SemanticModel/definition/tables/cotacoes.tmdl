@@ -1,0 +1,84 @@
+table cotacoes
+	lineageTag: b1b76725-563a-4ec5-a546-77368411c1d8
+	sourceLineageTag: [dbo].[cotacoes]
+
+	measure 'Cotação do dia' = AVERAGE(cotacoes[Cotacao])
+		displayFolder: Medidas
+		lineageTag: 0191516f-3026-4f4c-8dd3-f28102156ee4
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Moeda
+		dataType: string
+		displayFolder: Colunas
+		lineageTag: 910632fc-e070-435d-93c7-23f2a5780993
+		sourceLineageTag: Moeda
+		summarizeBy: none
+		sourceColumn: Moeda
+
+		changedProperty = DisplayFolder
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataHoraCotacao
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: Colunas
+		lineageTag: a1b08521-0acf-4dde-8dd7-86f4ddec359c
+		sourceLineageTag: DataHoraCotacao
+		summarizeBy: none
+		sourceColumn: DataHoraCotacao
+
+		changedProperty = DisplayFolder
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataCotacao
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: Colunas
+		lineageTag: 68177a87-b6dd-4834-b940-bcfa8ba0fa1e
+		sourceLineageTag: DataCotacao
+		summarizeBy: none
+		sourceColumn: DataCotacao
+
+		changedProperty = DisplayFolder
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cotacao
+		dataType: double
+		displayFolder: Colunas
+		lineageTag: 3cd2439c-5002-43b4-b81f-3856c8dc73e7
+		sourceLineageTag: Cotacao
+		summarizeBy: sum
+		sourceColumn: Cotacao
+
+		changedProperty = DisplayFolder
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TipoBoletim
+		dataType: string
+		displayFolder: Colunas
+		lineageTag: 0a15520c-0b06-4c8c-8905-07803d705661
+		sourceLineageTag: TipoBoletim
+		summarizeBy: none
+		sourceColumn: TipoBoletim
+
+		changedProperty = DisplayFolder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition cotacoes = entity
+		mode: directLake
+		source
+			entityName: cotacoes
+			expressionSource: 'DirectLake - lake'
+

@@ -1,0 +1,75 @@
+table transacoes
+	lineageTag: b3f1cca2-0c19-4196-b7de-39cdc245ed3b
+	sourceLineageTag: [dbo].[transacoes]
+
+	measure Transacoes = ```
+			SUM(transacoes[Total]) 
+			```
+		displayFolder: Medidas
+		lineageTag: 17dc23a0-bb16-4fba-9252-653eccbccfcb
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ID
+		dataType: double
+		displayFolder: Colunas
+		lineageTag: c4900332-e87f-47aa-9511-b625057fd56a
+		sourceLineageTag: ID
+		summarizeBy: count
+		sourceColumn: ID
+
+		changedProperty = DisplayFolder
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Data
+		dataType: dateTime
+		formatString: General Date
+		displayFolder: Colunas
+		lineageTag: 46676c8e-53b0-4856-8634-7cd870467215
+		sourceLineageTag: Data
+		summarizeBy: none
+		sourceColumn: Data
+
+		changedProperty = DisplayFolder
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total
+		dataType: double
+		displayFolder: Colunas
+		lineageTag: 5847787a-d9f8-47d8-b455-ca744093673c
+		sourceLineageTag: Total
+		summarizeBy: sum
+		sourceColumn: Total
+
+		changedProperty = DisplayFolder
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Moeda
+		dataType: string
+		displayFolder: Colunas
+		lineageTag: 2d41064b-03f9-46ce-9965-c792020fe39a
+		sourceLineageTag: Moeda
+		summarizeBy: none
+		sourceColumn: Moeda
+
+		changedProperty = DisplayFolder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition transacoes = entity
+		mode: directLake
+		source
+			entityName: transacoes
+			expressionSource: 'DirectLake - lake'
+
