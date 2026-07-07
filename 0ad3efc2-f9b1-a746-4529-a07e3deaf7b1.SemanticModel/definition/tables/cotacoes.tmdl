@@ -1,10 +1,34 @@
 table cotacoes
-	lineageTag: b1b76725-563a-4ec5-a546-77368411c1d8
+	lineageTag: 9cd6ed58-95e7-4bac-be69-6a280b5cd499
 	sourceLineageTag: [dbo].[cotacoes]
+
+	measure 'Cotação corrigida' = ```
+			
+			
+			VAR __DataCtx = MAX(calendario[Data]) 
+			
+			VAR __UltimaDataComCotacao = 
+			    CALCULATE(
+			        LASTNONBLANK(calendario[Data], [Cotação do dia]),
+			        calendario[Data] <= __DataCtx
+			    )
+			
+			RETURN
+			    CALCULATE(
+			        [Cotação do dia],
+			        calendario[Data] = __UltimaDataComCotacao
+			    )
+			```
+		displayFolder: Medidas
+		lineageTag: ace1378b-b969-4cb1-af6d-fff8eb4b0042
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
 
 	measure 'Cotação do dia' = AVERAGE(cotacoes[Cotacao])
 		displayFolder: Medidas
-		lineageTag: 0191516f-3026-4f4c-8dd3-f28102156ee4
+		lineageTag: 2a706123-ff81-4685-891f-06c15cf3f4f0
 
 		changedProperty = Name
 
@@ -12,10 +36,27 @@ table cotacoes
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Total R$' = ```
+			
+			SUMX(
+			    moedas,
+			    SUMX(
+			        calendario,
+			        COALESCE([Cotação corrigida], 1) * [Valor Total] 
+			    )
+			) 
+			```
+		displayFolder: Medidas
+		lineageTag: abdfd985-cd40-4324-bdfd-bb1f9e6b1ee3
+
+		changedProperty = Name
+
+		changedProperty = DisplayFolder
+
 	column Moeda
 		dataType: string
 		displayFolder: Colunas
-		lineageTag: 910632fc-e070-435d-93c7-23f2a5780993
+		lineageTag: e91fa17b-9d96-484f-a4e5-a439eb31c98f
 		sourceLineageTag: Moeda
 		summarizeBy: none
 		sourceColumn: Moeda
@@ -28,7 +69,7 @@ table cotacoes
 		dataType: dateTime
 		formatString: General Date
 		displayFolder: Colunas
-		lineageTag: a1b08521-0acf-4dde-8dd7-86f4ddec359c
+		lineageTag: 39820a4f-300d-4b6b-a71f-5058ad10e8e2
 		sourceLineageTag: DataHoraCotacao
 		summarizeBy: none
 		sourceColumn: DataHoraCotacao
@@ -41,7 +82,7 @@ table cotacoes
 		dataType: dateTime
 		formatString: General Date
 		displayFolder: Colunas
-		lineageTag: 68177a87-b6dd-4834-b940-bcfa8ba0fa1e
+		lineageTag: 6d3906bd-5b1d-4e18-8eee-51b19ae6e106
 		sourceLineageTag: DataCotacao
 		summarizeBy: none
 		sourceColumn: DataCotacao
@@ -53,7 +94,7 @@ table cotacoes
 	column Cotacao
 		dataType: double
 		displayFolder: Colunas
-		lineageTag: 3cd2439c-5002-43b4-b81f-3856c8dc73e7
+		lineageTag: cc883601-1659-46b6-bed9-d53f0c200ed3
 		sourceLineageTag: Cotacao
 		summarizeBy: sum
 		sourceColumn: Cotacao
@@ -67,7 +108,7 @@ table cotacoes
 	column TipoBoletim
 		dataType: string
 		displayFolder: Colunas
-		lineageTag: 0a15520c-0b06-4c8c-8905-07803d705661
+		lineageTag: 86fb34bc-4d70-47ea-ba12-715f77142dcc
 		sourceLineageTag: TipoBoletim
 		summarizeBy: none
 		sourceColumn: TipoBoletim

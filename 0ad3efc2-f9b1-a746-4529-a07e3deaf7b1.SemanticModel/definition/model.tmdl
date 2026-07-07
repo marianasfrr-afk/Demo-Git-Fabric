@@ -12,7 +12,8 @@ annotation PBI_QueryOrder = ["DirectLake - lake"]
 
 annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
 
+ref table calendario
+ref table transacoes
 ref table moedas
 ref table cotacoes
-ref table transacoes
 

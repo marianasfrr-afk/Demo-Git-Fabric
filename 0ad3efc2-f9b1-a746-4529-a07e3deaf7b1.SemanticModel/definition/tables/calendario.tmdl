@@ -1,0 +1,22 @@
+table calendario
+	lineageTag: af6a405d-d792-4a30-a6fd-8b9a4aa5b050
+	sourceLineageTag: [dbo].[calendario]
+	dataCategory: Time
+
+	column Data
+		dataType: dateTime
+		isKey
+		formatString: General Date
+		lineageTag: b5f17f3c-0308-48d1-8f49-5fa136652a56
+		sourceLineageTag: Data
+		summarizeBy: none
+		sourceColumn: Data
+
+		annotation SummarizationSetBy = Automatic
+
+	partition calendario = entity
+		mode: directLake
+		source
+			entityName: calendario
+			expressionSource: 'DirectLake - lake'
+
